@@ -1,16 +1,16 @@
 # 为什么需要WebSocket ？
 
-WebSocket的出现是为了满足人们对基于web的全双工协议的需求。
+WebSocket的出现是为了满足人们对基于Web的全双工协议的需求。
 
-Web是互联网上最大的应用平台，随着越来越多的人网上冲浪，基于web的即时聊天、游戏等项目出现。为了实现这些功能，开发者使用各种黑科技来在http1.x的**单向的粗粒度的请求响应模型**上模拟一个全双工的通信协议，包括但不限于轮训、XHR、commet、iframe...
+Web是互联网上最大的应用平台，随着越来越多的人网上冲浪，基于web的即时聊天、游戏等项目出现。为了实现这些功能，开发者使用各种黑科技来在HTTP1.x的**单向的粗粒度的请求响应模型**上模拟一个全双工的通信协议，包括但不限于轮训、XHR、Commet、iframe...
 
 一个更好的方式是提供一个新的全双工协议，从而更正式的、更有效率的支持以上应用需求。
 
-这个协议在RFC6455中进行的定义。
+这个协议在[RFC6455](https://datatracker.ietf.org/doc/html/rfc6455)中进行的定义。
 
 # WebSocket 的设计思路
 
-WebSocket的想法是使用现有的http协议承载[握手协议](https://zh.wikipedia.org/wiki/WebSocket#%E6%8F%A1%E6%89%8B%E5%8D%8F%E8%AE%AE)，好处是应用可以利用HTTP基础设施，如cookie等。HTTP Tunnel、HTTP2也采用了类似的设计。
+WebSocket的想法是使用现有的HTTP协议承载[握手协议](https://zh.wikipedia.org/wiki/WebSocket#%E6%8F%A1%E6%89%8B%E5%8D%8F%E8%AE%AE)，好处是应用可以利用HTTP基础设施，如Cookie等。HTTP Tunnel、HTTP2也采用了类似的设计。
 
 握手完成后，进入WebSocket的数据传输阶段，其本质是一个基于帧的通信协议，具体参考`协议实例`一文。
 
