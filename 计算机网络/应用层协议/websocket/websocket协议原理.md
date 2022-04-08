@@ -10,9 +10,9 @@ Web是互联网上最大的应用平台，随着越来越多的人网上冲浪�
 
 # WebSocket 的设计思路
 
-WebSocket的想法是使用现有的HTTP协议承载[握手协议](https://zh.wikipedia.org/wiki/WebSocket#%E6%8F%A1%E6%89%8B%E5%8D%8F%E8%AE%AE)，好处是应用可以利用HTTP基础设施，如Cookie等。HTTP Tunnel、HTTP2也采用了类似的设计。
+WebSocket的想法是使用现有的HTTP协议承载[握手协议](https://zh.wikipedia.org/wiki/WebSocket#%E6%8F%A1%E6%89%8B%E5%8D%8F%E8%AE%AE)，好处是可以利用HTTP基础设施，如Cookie等。HTTP Tunnel、HTTP2也采用了类似的设计。
 
-握手完成后，进入WebSocket的数据传输阶段，其本质是一个基于帧的通信协议，具体参考`协议实例`一文。
+握手完成后，进入WebSocket的数据传输阶段，其本质是一个**基于帧**的通信协议，具体参考`协议实例`一文。
 
 当需要关闭连接时，任意一方可以发起关闭连接的请求，并半关闭它。
 
@@ -39,7 +39,3 @@ HTTP2的RFC并没有提及WebSocket，但[RFC8441](https://tools.ietf.org/html/r
 # HTTP3时代的WebSocket
 
 // more
-
-# 参考
-
-[RFC6455](https://www.rfc-editor.org/rfc/rfc6455.html)

@@ -42,8 +42,6 @@ Sec-WebSocket-Accept: o5hzvsCRA8f7CCkw7O2mxrI7KKY=
 
 可以看到WebSocket使用了**成帧机制**，帧头很短，只使用了两个字节包括：
 
-
-
 - Fin
 
 - Resvered 保留位
@@ -53,8 +51,6 @@ Sec-WebSocket-Accept: o5hzvsCRA8f7CCkw7O2mxrI7KKY=
 - Ｍask 是否使用掩码
 
 - Payload length 负载长度
-
-
 
 在使用掩码时会附加一个固定长度的掩码，后续的所有负载使用掩码进行了编码，接收者需要进行解码处理。
 
