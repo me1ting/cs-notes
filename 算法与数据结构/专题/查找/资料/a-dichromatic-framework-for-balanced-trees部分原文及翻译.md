@@ -1,0 +1,14 @@
+# A Dichromatic Framework for Balanced Trees
+## 摘要
+>In this paper we present a uniform framework for the implementation and study of halanced tree algorithms. We show how to imbed in this framework the best known balanced tree technques and then use the framework to develop new algorithms which perform the update and rebalancing in one pass, on the way down towards a leaf. We conclude with a study of performance issues and concurrent updating.
+
+在本文中，我们提出了一个用于实现和研究平衡树算法的统一框架。 我们展示了如何在这个框架中嵌入最知名的平衡树技术，然后使用该框架开发新的算法，这些算法在向下到叶子的过程中一次执行更新和重新平衡。 我们以对性能问题和并发更新的研究结束本文。
+
+## 0.介绍
+>Balanced trees are among the oldest and most widely used data structures for searching. These trees allow a wide variety of operations, such as search, insertion, deletion, merging, and splitting to be performed in time O(logN), where N denotes the size of the tree. (Throughout the paper log will denote log to the base 2.) A number of different types of balanced trees have been proposed, and while the related algorithms are often conceptually simple, they have proven cumbersome to implement in practice. Also, the variety of such trees and the lack of good analytic results describing their performance has made it difficult to decide which is best in a given situation.
+
+平衡树是用于搜索的最古老和最广泛使用的数据结构之一。 这些树允许在 O(logN) 时间内执行各种操作，例如搜索、插入、删除、合并和拆分，其中 N 表示树的大小。 （在本文中，log将表示以 2 为底的对数。）已经提出了许多不同类型的平衡树，虽然相关算法通常在概念上很简单，但在实践中证明它们实施起来很麻烦。 此外，此类树的种类繁多以及缺乏描述其性能的良好分析结果使得很难确定在给定情况下哪种树最好。
+
+> In this paper we present a uniform fratnework for the implementation and study of balanced tree algorithrns. The framework deals exclusively with binary trees which contain two kinds of nodes: internal and external. Each internal node contains a key (chosen from a linear order) and has two links to other nodes (internal or external). External nodes contain no keys and have null links. If such a tree is traversed in symmetric order then the internal nodes will be visited in increasing order of their keys. A second defining feature of the framework is that it allows one bit per node, called the color of the node, to store balance infonnation. We will use red and black as the two colors. In section 1 we further claborate upon this dichromatic framework and show how to imbed in it the best known balanced tree algorithms. In doing so, we will discover suprising new and efficient implementations of these techniques.
+
+在本文中，我们为平衡树算法的实现和学习研究提出了一个统一的框架。该框架仅处理包含两种节点的二叉树：内部节点和外部节点。 每个内部节点都包含一个键（从线性顺序中选择）并有两个到其他节点（内部或外部）的链接。 外部节点不包含键并且链接为空。 如果以对称顺序遍历这样的树，则内部节点将按其键的递增顺序被访问。 该框架的第二个定义特征是它允许每个节点使用一个比特（称为节点的颜色）来存储平衡信息。 我们将使用红色和黑色作为两种颜色。 在第 1 节中，我们进一步阐述了这个二色框架，并展示了如何在其中嵌入最著名的平衡树算法。 在这样做的过程中，我们将发现这些技术的惊人的新的和有效的实现。
