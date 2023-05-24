@@ -1,6 +1,6 @@
 # 示例
 一次典型的TCP连接全过程：
-![wqel213j12312](_v_images/ScreenshotWEDQWD.png)
+![wqel213j12312](_images/ScreenshotWEDQWD.png)
 
 # 段
 TCP的基本传输单元称为`TCP段`。
@@ -28,7 +28,7 @@ TCP的基本传输单元称为`TCP段`。
 # TCP的状态模型
 TCP建立连接和释放连接的步骤可以用有限状态机描述，并成为该邻域的共同语言。
 
-![SumatraPDF_aeUd1x4Qwo](_v_images/qwewqesdqweqw.png)
+![SumatraPDF_aeUd1x4Qwo](_images/qwewqesdqweqw.png)
 
 细节参考《计算机网络》6.5.7 TCP连接管理。这里记录一些细节说明：
 

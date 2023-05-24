@@ -34,11 +34,11 @@ Sec-WebSocket-Accept: o5hzvsCRA8f7CCkw7O2mxrI7KKY=
 
 客户端发送如下：
 
-![image-20220406134505055](assets/image-20220406134505055.png)
+![](_images/image-20220406134505055.png)
 
 服务端响应如下：
 
-![image-20220406134535463](assets/image-20220406134535463.png)
+![image-20220406134535463](_images/image-20220406134535463.png)
 
 可以看到WebSocket使用了**成帧机制**，帧头很短，只使用了两个字节包括：
 
@@ -58,10 +58,10 @@ Sec-WebSocket-Accept: o5hzvsCRA8f7CCkw7O2mxrI7KKY=
 
 客户端断开连接请求：
 
-![image-20220406134645106](assets/image-20220406134645106.png)
+![image-20220406134645106](_images/image-20220406134645106.png)
 
 
 
 服务端响应：
 
-![image-20220406134701068](assets/image-20220406134701068.png)
+![image-20220406134701068](_images/image-20220406134701068.png)
