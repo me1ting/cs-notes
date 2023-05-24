@@ -165,3 +165,9 @@ bundle.js?v=YsAIAAAA-QG4G6kCMAMBAAAAAAAoK
 对于资源文件，因为其URL一般对用户隐藏，其查询参数通常不被使用，因此这种方式是合理的。
 
 资源文件的加载路径的root是html文件，只要html文件没有启用缓存，那么更新html文件就能实现对资源文件的更新。
+
+# Refs
+
+[MDN: HTTP caching](https://developer.mozilla.org/en-US/docs/Web/HTTP/Caching)
+
+《http权威指南》第7章
