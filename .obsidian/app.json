@@ -1,0 +1,8 @@
+{
+  "showInlineTitle": false,
+  "attachmentFolderPath": "./assets",
+  "useMarkdownLinks": true,
+  "userIgnoreFilters": null,
+  "newLinkFormat": "relative",
+  "alwaysUpdateLinks": true
+}
