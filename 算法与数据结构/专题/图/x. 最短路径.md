@@ -53,7 +53,7 @@ func search(G [][]int)[]int{
 
 //TODO: add code
 
-# Refs
+# 参考资料
 
 《数据结构与算法分析 Java语言描述》v3 9.3 最短路径
 《算法》v4 4.4 最短路径
