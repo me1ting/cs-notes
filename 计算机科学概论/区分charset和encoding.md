@@ -6,7 +6,7 @@
 2. `编码字符集`(coded character sets) 是抽象字符集合和整数集合之间的映射关系，如US-ASCII,ISO8859-1,Unicode。
 3. `字符编码方案`(character-encoding scheme) 是编码字符集和字节序列集合之间的映射关系，如UTF-8,UTF-16,EUC。
 
-某些软件将`字符集`与`编码字符集`等同，是因为在单字节时代(US-ASCII,ISO-8859)，并没有字符编码方案的概念。到了多字节时代，为了兼容US-ASCII以及方便存储和传输等，独立区分字符编码方案。
+某些软件将`字符集`与`编码字符集`等同，是因为在单字节时代(US-ASCII,ISO-8859)，并没有字符编码方案的概念。到了多字节时代，为了兼容US-ASCII以及方便存储和传输等，字符编码方案被提出。
 
 # 理解相关概念
 
@@ -18,7 +18,9 @@
 
 ASCII又称为`US-ASCII`，使用定长的1个字节记录抽象字符映射的整数，实际使用了字节的7位用于编码，包含128个抽象字符，最高位用作奇偶校验位。
 
-存在`扩展ASCII`(EASCII)，使用了最高位来表示字符，当使用ASCII术语时并不包含扩展ASCII部分。
+存在`扩展ASCII`(EASCII)，使用了最高位来表示字符。
+
+术语ASCII指的是US-ASCII，不包括扩展部分。
 
 小结：**ASCII是一种编码字符集。**
 
@@ -38,16 +40,17 @@ ASCII又称为`US-ASCII`，使用定长的1个字节记录抽象字符映射的�
 
 GB2312字符集分成94个区，每区有94个位，共8836个码位。采用两个字节编码，分别记录区号和位号，如："啊"字位于16区1位，则是16-1。
 
-但工程事实是必须兼容ASCII，普遍采用的是`EUC-CN`表示法：这是一个变长的编码方案，对ASCII字符采用原来的单字节；对于GB2312字符，区号和位号都加上0xA0(160)。这样一个小于128的字节还是表示ASCII字符，而大于128的则一定表示的是GB2312的字符。因为GB2312收录了ASCII中已有的字符，存在全角、半角的区分（具体原因与印刷业有关）。
+但在工程上必须兼容ASCII，普遍采用的是`EUC-CN`表示法：这是一个变长的编码方案，对ASCII字符采用原来的单字节；对于GB2312字符，区号和位号都加上0xA0(160)。这样一个小于128的字节还是表示ASCII字符，而大于128的则一定表示的是GB2312的字符。因为GB2312收录了ASCII中已有的字符，所以存在全角、半角的区分（为了满足印刷业需求）。
 
 没有被收录的汉字还有许多，因此中国官方又发布了`GBK`（汉字内码扩展规范）。GBK扩展了GB2312所包含的字符，达到21886个字符。
 
 GBK默认采用EUC-CN表示法，完全兼容采用EUC-CN表达法的GB2312。区的数量，每个区的位数都进行了扩展。但第二个字节不再一定大于128，只有通过第一个字节判断编码的是ASCII字符还是GBK字符。
 
 小结：
-**GB2312标准是一种编码字符集。**
-**EUC-CN是一种字符编码方案，相比UTF-8、UTF-16显得默默无闻。**
-**通常所指的GB2312是EUC-CN表示法与GB2312编码字符集的组合。**
+
+- **GB2312标准是一种编码字符集**
+- **EUC-CN是一种字符编码方案，相比UTF-8、UTF-16显得默默无闻**
+- **通常所指的GB2312是EUC-CN表示法与GB2312编码字符集的组合**
 
 ## Unicode,UTF-8,UTF-16,UTF-32
 
@@ -59,11 +62,11 @@ Unicode的编码空间为U+0000到U+10FFFF,共有1,112,064个码位(code point)�
 
 Unicode标准定义了编码字符集 `the Universal Coded Character Set` (`UCS`)。
 
-UCS最开始的版本是`USC-2`(2-byte Universal Character Set)。采用两个字节表示码位，只能编码BMP对应的字符。兼容标准ASCII（高位为0）。
+UCS最开始的版本是`UCS-2`(2-byte Universal Character Set)。采用两个字节表示码位，只能编码BMP对应的字符。兼容标准ASCII（高位为0）。
 
 但随着Unicode的扩展，辅助平面的添加，两个字节已经不足以表示所有码位。Unicode编码字符集的下一个版本是`UCS-4`(4-byte Universal Character Set)，使用4个字节表示码位，兼容`UCS-2（高位两字节为0）。
 
-采用2字节或4字节的USC相比ASCII的1个字节浪费存储空间，而且影响传输效率。因此Unicode定义了the Unicode Transformation Format (`UTF`) encodings实现针对Unicode的可变长度的编码方案，来解决上述问题。
+采用2字节或4字节的UCS相比ASCII的1个字节浪费存储空间，而且影响传输效率。因此Unicode定义了the Unicode Transformation Format (`UTF`) encodings实现针对Unicode的可变长度的编码方案，来解决上述问题。
 
 `UTF-8`使用1~4个字节对UCS编码，其中：
 
@@ -72,7 +75,7 @@ UCS最开始的版本是`USC-2`(2-byte Universal Character Set)。采用两个�
 
 UTF-8保证了一个字符的字节序列不会包含在另一个字符的字节序列中。
 
-`UTF-16`是UCS-2的超集，定义它并非为了传输和存储，而是对UCS-2扩展以支持非标准平面的字符。使用2或4个字节对UCS编码，2个字节的基本单元称为码元。对于BMP对应的字符与UCS-2相同，一个码元数值上与码位相等。对于辅助字符采用两个码元来表示，称为前导代理和后导代理，它们将码位进行编码，保证了都不与BMP中有效字符的码位冲突。
+`UTF-16`是UCS-2的超集，定义它并非为了传输和存储，而是对UCS-2扩展以支持辅助平面的字符。使用2或4个字节对UCS编码，2个字节的基本单元称为码元。对于BMP上的字符，一个码元数值上与码位相等。对于辅助平面上的字符采用两个码元来表示，称为前导代理和后导代理，它们将码位进行编码，保证了都不与BMP中有效字符的码位冲突。
 
 `UTF-32`功能上与UCS-4相同。
 
@@ -95,9 +98,9 @@ UTF-16和UTF-32的编码单元分别为2个字节和4个字节，因此提供了
 
 BOM(byte order mark)是一个Unicode字符，UTF-8,UTF-16,UTF-32都可以使用BOM。其作为魔数表明其所在文本：
 
-- 明确声明采用的哪种字节序
-- 明确声明该文本采用的编码字符集为Unicode
-- 明确声明该文本具体采用的哪种Unicode编码方案
+- 采用的哪种字节序
+- 该文本采用的编码字符集为Unicode
+- 采用的哪种Unicode编码方案
 
 > 大小端和BOM的使用场景不多，主要是Windows平台在使用。
 
@@ -113,15 +116,18 @@ BOM(byte order mark)是一个Unicode字符，UTF-8,UTF-16,UTF-32都可以使用B
 char frowningFace='☹';//U+2639，正常编译
 char slightlyFrowningFace='\uD83D\uDE41';//U+1F641 辅助平面字符🙁无法用char表示，无法编译
 ```
+
 `String`表示字符串，使用UTF-16编码字符串并存储在底层的char\[]中。我们在编程时一般将底层char\[]的每个元素当作一个字符，进行比较或是匹配：
+
 ```java
 if(str.charAt(0)=='<')
     ...
 ```
-因为UTF-16的基本面字符码元与辅助字符码元不冲突的性质，这种比较结果上并没有错误。只是注意得到的char不一定表示一个字符，而可能只是字符的部分。
 
+因为UTF-16的基本面字符码元与辅助字符码元不重复的性质，这种比较结果上并没有错误。只是注意得到的char不一定表示一个字符，而可能只是字符的部分。
 
 理论上更好的方式，是以码位的方式进行遍历，但实际操作并不怎么方便：
+
 ```java
 for(int i=0;i<faces.codePointCount(0,faces.length());i++){
     System.out.printf("%x\n",faces.codePointAt(i));
@@ -137,11 +143,13 @@ frowningFace,slightlyFrowningFace:='☹','🙁'//相比Java，Go的rune能表示
 ```
 
 `string`为字符串类型，字符串通过`UTF-8`编码保存在底层的byte[]中。Go支持`for-range`对字符串中的Unicode字符进行迭代：
+
 ```
 for pos, char := range str {
     ...
 }
 ```
+
 可以看到，作为较新的编程语言，Go对于字符编码的支持是足够现代化的。
 
 ## Windows(<=Win10 1607，新版本未测试)
@@ -162,10 +170,12 @@ notepad对于编码的命名比较混乱，而且喜欢使用BOM，因此在Wind
 在使用US-ASCII、ISO8859-1、GB2312、GBK时我们不需要考虑编码方案的问题，因为它们的编码方式是唯一的，只有在Unicode时才需要考虑编码方案的问题。
 
 不精确的讲，我们可以如下称呼：
+
 - 字符集(charset)：US-ASCII,ISO8859-1,GB2312,GBK,Unicode
 - 编码/编码方案(encoding)：EUC,UTF-8,UTF-16
 
-# 参考链接
+# 参考资料
+
 [java Charset class](https://docs.oracle.com/javase/7/docs/api/java/nio/charset/Charset.html)<br/>
 [RFC2278](http://www.faqs.org/rfcs/rfc2278.html)<br/>
 [wiki: ASCII](https://en.wikipedia.org/wiki/ASCII)<br/>
